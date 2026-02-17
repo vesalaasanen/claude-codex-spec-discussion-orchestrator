@@ -1,0 +1,39 @@
+{
+  "output_root": ".agent-discussions",
+  "discussion": {
+    "specs_root": "specs/greenfield",
+    "spec_glob": "*.md",
+    "specs_index_max_files": 200,
+    "codebase_paths": [],
+    "require_codebase_compare": false,
+    "max_rounds": 3,
+    "high_severity_labels": ["high", "critical"],
+    "context_files": []
+  },
+  "templates": {
+    "codex": "templates/codex_prompt.md",
+    "claude": "templates/claude_prompt.md"
+  },
+  "agents": {
+    "codex": {
+      "command": [
+        "python3",
+        "agent_discussion/test_agents/codex_greenfield_stub.py",
+        "{prompt_file}"
+      ],
+      "timeout_seconds": 30,
+      "pass_prompt_via_stdin": false,
+      "env": {}
+    },
+    "claude": {
+      "command": [
+        "python3",
+        "agent_discussion/test_agents/claude_greenfield_stub.py",
+        "{prompt_file}"
+      ],
+      "timeout_seconds": 30,
+      "pass_prompt_via_stdin": false,
+      "env": {}
+    }
+  }
+}

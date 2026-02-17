@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# Local run artifacts
+.agent-discussions/
+
+# Local config variants
+agent_discussion/config.json
+
+# Virtual envs
+.venv/
+venv/

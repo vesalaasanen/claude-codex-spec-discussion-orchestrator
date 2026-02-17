@@ -1,0 +1,41 @@
+{
+  "output_root": ".agent-discussions",
+  "discussion": {
+    "specs_root": "specs",
+    "spec_glob": "*.md",
+    "specs_index_max_files": 200,
+    "codebase_paths": ["src", "scripts", "tests"],
+    "require_codebase_compare": true,
+    "max_rounds": 6,
+    "high_severity_labels": ["high", "critical"],
+    "context_files": []
+  },
+  "templates": {
+    "codex": "templates/codex_prompt.md",
+    "claude": "templates/claude_prompt.md"
+  },
+  "agents": {
+    "codex": {
+      "command": [
+        "codex",
+        "run",
+        "--prompt-file",
+        "{prompt_file}"
+      ],
+      "timeout_seconds": 900,
+      "pass_prompt_via_stdin": false,
+      "env": {}
+    },
+    "claude": {
+      "command": [
+        "claude",
+        "run",
+        "--prompt-file",
+        "{prompt_file}"
+      ],
+      "timeout_seconds": 900,
+      "pass_prompt_via_stdin": false,
+      "env": {}
+    }
+  }
+}
