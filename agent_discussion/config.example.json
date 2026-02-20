@@ -6,36 +6,32 @@
     "specs_index_max_files": 200,
     "codebase_paths": ["src", "scripts", "tests"],
     "require_codebase_compare": true,
-    "max_rounds": 6,
+    "max_resolution_rounds": 2,
+    "max_new_issues_per_resolution_round": 3,
     "high_severity_labels": ["high", "critical"],
     "context_files": []
   },
   "templates": {
-    "codex": "templates/codex_prompt.md",
-    "claude": "templates/claude_prompt.md"
+    "phase1_codex_critique": "templates/phase1_codex_critique.md",
+    "phase1_claude_critique": "templates/phase1_claude_critique.md",
+    "phase2_consolidate": "templates/phase2_consolidate.md",
+    "phase3_resolve_claude": "templates/phase3_resolve_claude.md",
+    "phase3_resolve_codex": "templates/phase3_resolve_codex.md"
   },
   "agents": {
     "codex": {
-      "command": [
-        "codex",
-        "run",
-        "--prompt-file",
-        "{prompt_file}"
-      ],
+      "command": ["codex", "exec", "--full-auto", "-"],
       "timeout_seconds": 900,
-      "pass_prompt_via_stdin": false,
+      "pass_prompt_via_stdin": true,
       "env": {}
     },
     "claude": {
-      "command": [
-        "claude",
-        "run",
-        "--prompt-file",
-        "{prompt_file}"
-      ],
+      "command": ["claude", "-p", "--allowedTools", "Read,Glob,Grep,Bash,WebSearch,WebFetch"],
       "timeout_seconds": 900,
-      "pass_prompt_via_stdin": false,
-      "env": {}
+      "pass_prompt_via_stdin": true,
+      "env": {
+        "CLAUDECODE": null
+      }
     }
   }
 }
